@@ -1,0 +1,681 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cyber Suraksha Gram</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: a village-road journey. Sticky header with festival bunting, one lesson per screen, big Back/Next bar at the bottom, a turbaned guide (Suraksha Dada) speaks on every screen. */
+:root{
+  --bg:#F1F6E8; --surface:#FFFFFF; --ink:#1B2740; --muted:#52607A; --line:#D5DEC3;
+  --brand:#2A3F9D; --on-brand:#FFFFFF; --sun:#F4A300; --on-sun:#2A1B00; --leaf:#2E7B4B; --alert:#C42B2B;
+  --warm:#FDEFC2; --good-bg:#E2F3E6; --bad-bg:#FBE4E1; --info-bg:#E5EAFB;
+  --sky:#CDE7F4; --hill1:#9CCB93; --hill2:#6DAA73; --mud:#C58A5B; --thatch:#9B6B2A; --skin:#B77B50; --road:#E4D3A8;
+  --display:'Baloo 2','Hind','Noto Sans Devanagari',system-ui,sans-serif;
+  --body:'Hind','Noto Sans Devanagari',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111A15; --surface:#1A251E; --ink:#EAF0E4; --muted:#A3B09F; --line:#2E3C32;
+    --brand:#9AAAFF; --on-brand:#10163A; --sun:#FFC43D; --on-sun:#2A1B00; --leaf:#6FCB8E; --alert:#FF8179;
+    --warm:#3A3114; --good-bg:#18382A; --bad-bg:#40201E; --info-bg:#1F2748;
+    --sky:#1D3347; --hill1:#2D5A3C; --hill2:#234A31; --mud:#8A5E3E; --thatch:#7A5420; --road:#3C3524;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111A15; --surface:#1A251E; --ink:#EAF0E4; --muted:#A3B09F; --line:#2E3C32;
+  --brand:#9AAAFF; --on-brand:#10163A; --sun:#FFC43D; --on-sun:#2A1B00; --leaf:#6FCB8E; --alert:#FF8179;
+  --warm:#3A3114; --good-bg:#18382A; --bad-bg:#40201E; --info-bg:#1F2748;
+  --sky:#1D3347; --hill1:#2D5A3C; --hill2:#234A31; --mud:#8A5E3E; --thatch:#7A5420; --road:#3C3524;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--body); font-size:18px; line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 120px;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+h1,h2,h3{font-family:var(--display);line-height:1.2;margin:0;text-wrap:balance}
+h1{font-size:2rem;font-weight:800} h2{font-size:1.55rem;font-weight:800} h3{font-size:1.2rem;font-weight:700}
+p{margin:0}
+.ic{width:1.5em;height:1.5em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic.sm{width:1.15em;height:1.15em}
+.ic.lg{width:2.2em;height:2.2em}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);
+  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px))) calc(-1 * max(16px,env(safe-area-inset-right,0px)));
+  padding:8px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+.top-row{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:8px}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--brand);min-width:0}
+.brand span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lang{display:flex;border:2px solid var(--brand);border-radius:999px;overflow:hidden;flex:none}
+.lang button{font:600 .95rem var(--body);padding:6px 12px;border:0;background:transparent;color:var(--brand);cursor:pointer;min-height:36px}
+.lang button[aria-pressed="true"]{background:var(--brand);color:var(--on-brand)}
+.toran{height:7px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));background:repeating-linear-gradient(90deg,var(--sun) 0 14px,var(--alert) 14px 28px,var(--brand) 28px 42px,var(--leaf) 42px 56px)}
+.road{max-width:720px;margin:0 auto;padding:8px 0 10px}
+.road-label{font-size:.9rem;color:var(--muted);font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.dots{display:flex;gap:6px;margin-top:6px}
+.dot{flex:1;height:10px;border-radius:6px;background:var(--line);border:0;padding:0;cursor:default}
+.dot.done{background:var(--leaf);cursor:pointer}
+.dot.now{background:var(--sun)}
+
+main{max-width:720px;margin:0 auto;padding-top:18px;display:flex;flex-direction:column;gap:18px;outline:none}
+.fade{animation:fade .3s ease}
+@keyframes fade{from{opacity:.0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fade{animation:none}*{transition:none!important}}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.card.warm{background:var(--warm)}
+.scene{width:100%;height:auto;border-radius:18px;display:block}
+
+/* guide */
+.guide{display:flex;gap:10px;align-items:flex-end}
+.guide .face{width:76px;height:76px;flex:none}
+.bubble{position:relative;background:var(--surface);border:2px solid var(--sun);border-radius:18px 18px 18px 4px;padding:12px 14px;flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.bubble .who{font-family:var(--display);font-weight:700;color:var(--brand);font-size:.95rem}
+
+/* buttons */
+.btn{font:700 1.1rem var(--body);min-height:56px;padding:12px 20px;border-radius:16px;border:2px solid transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-align:center;text-decoration:none;transition:transform .12s}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--brand);color:var(--on-brand)}
+.btn.sun{background:var(--sun);color:var(--on-sun)}
+.btn.ghost{background:transparent;color:var(--brand);border-color:var(--brand)}
+.btn.small{min-height:44px;font-size:1rem;padding:8px 14px;border-radius:12px}
+.btn.block{width:100%}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+
+/* forms */
+label{font-weight:600;display:block;margin-bottom:4px}
+input[type=text],textarea{width:100%;font:500 1.1rem var(--body);padding:13px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+textarea{min-height:150px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--brand);outline:none}
+.err{color:var(--alert);font-weight:600;min-height:1.4em}
+.fine{font-size:.92rem;color:var(--muted)}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.tile{display:flex;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;padding:14px;border-radius:16px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:600 1.02rem var(--body);cursor:pointer;min-height:104px;min-width:0}
+.tile .disc{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff}
+.tile.on{border-color:var(--brand);background:var(--info-bg)}
+.tile .seen{margin-left:auto;color:var(--leaf)}
+.c1{background:#2A3F9D}.c2{background:#C42B2B}.c3{background:#2E7B4B}.c4{background:#B7790A}.c5{background:#7A3E9D}.c6{background:#0F7F8C}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spread{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+/* lists */
+.flags,.dos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.flags li,.dos li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;min-width:0}
+.flags li{background:var(--bad-bg)} .flags .ic{color:var(--alert);margin-top:2px}
+.dos li{background:var(--good-bg)} .dos .ic{color:var(--leaf);margin-top:2px}
+.say{background:var(--bad-bg);border-radius:16px 16px 16px 4px;padding:14px;border:2px dashed var(--alert);font-weight:500}
+.chan{font-size:.85rem;font-weight:700;color:var(--alert);letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.head-good{color:var(--leaf)} .head-bad{color:var(--alert)}
+.sec-title{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:1.1rem}
+
+/* dos & donts */
+.acc{border:2px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
+.acc>button{width:100%;display:flex;align-items:center;gap:12px;padding:14px;border:0;background:transparent;color:var(--ink);font:700 1.1rem var(--display);cursor:pointer;text-align:left;min-height:64px}
+.acc>button .disc{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;flex:none}
+.acc>button .chev{margin-left:auto;transition:transform .2s}
+.acc.open{border-color:var(--brand)} .acc.open .chev{transform:rotate(90deg)}
+.acc .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:10px}
+
+/* checker */
+.verdict{border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.verdict.danger{background:var(--bad-bg);border:2px solid var(--alert)}
+.verdict.careful{background:var(--warm);border:2px solid var(--sun)}
+.verdict.safe{background:var(--good-bg);border:2px solid var(--leaf)}
+.verdict .big{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:1.6rem}
+.danger .big{color:var(--alert)} .careful .big{color:var(--on-sun)} .safe .big{color:var(--leaf)}
+:root[data-theme="dark"] .careful .big{color:var(--sun)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .careful .big{color:var(--sun)}}
+.reasons{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.reasons li{display:flex;gap:8px;align-items:flex-start}
+.chip{font:600 .98rem var(--body);padding:8px 14px;border-radius:999px;border:2px solid var(--brand);background:transparent;color:var(--brand);cursor:pointer;min-height:42px;text-align:left}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--on-brand)}
+
+/* quiz */
+.opt{display:flex;gap:12px;align-items:center;width:100%;padding:14px;border-radius:16px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:600 1.05rem var(--body);cursor:pointer;text-align:left;min-height:62px}
+.opt .k{width:34px;height:34px;border-radius:50%;background:var(--info-bg);display:grid;place-items:center;font-family:var(--display);font-weight:800;color:var(--brand);flex:none}
+.opt.right{border-color:var(--leaf);background:var(--good-bg)}
+.opt.wrong{border-color:var(--alert);background:var(--bad-bg)}
+.opt:disabled{cursor:default}
+.bar-q{height:12px;border-radius:8px;background:var(--line);overflow:hidden}
+.bar-q i{display:block;height:100%;background:var(--sun);border-radius:8px;transition:width .3s}
+.explain{padding:12px 14px;border-radius:14px;background:var(--info-bg)}
+.medal{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.medal svg{width:150px;height:auto}
+.score{font-family:var(--display);font-weight:800;font-size:2.6rem;color:var(--brand)}
+
+/* help */
+.call{background:var(--alert);color:#fff;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+:root[data-theme="dark"] .call{background:#8F1F1F}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .call{background:#8F1F1F}}
+.call .num{font-family:var(--display);font-weight:800;font-size:3.4rem;line-height:1;letter-spacing:.04em}
+.call .btn{background:#fff;color:#8F1F1F}
+.step{display:flex;gap:12px;align-items:flex-start;width:100%;padding:12px;border-radius:14px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:500 1.02rem var(--body);cursor:pointer;text-align:left}
+.step .box{width:30px;height:30px;border-radius:9px;border:2px solid var(--brand);display:grid;place-items:center;flex:none;color:transparent}
+.step.ticked{background:var(--good-bg);border-color:var(--leaf)}
+.step.ticked .box{background:var(--leaf);border-color:var(--leaf);color:#fff}
+
+/* feedback */
+.stars{display:flex;gap:6px}
+.stars button{background:transparent;border:0;cursor:pointer;color:var(--line);padding:4px}
+.stars button.on{color:var(--sun)}
+.stars .ic{width:2.4em;height:2.4em;fill:currentColor}
+.cert{border:3px double var(--sun);border-radius:18px;padding:18px;text-align:center;display:flex;flex-direction:column;gap:6px;background:var(--surface)}
+.cert .nm{font-family:var(--display);font-weight:800;font-size:1.8rem;color:var(--brand)}
+
+/* nav bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.bar-in{max-width:720px;margin:0 auto;display:flex;gap:10px}
+.bar .btn{flex:1}
+.bar .btn.next{flex:2}
+.bar .btn small{display:block;font-weight:500;font-size:.8rem;opacity:.9}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 005 5L15.5 12l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z"/></symbol>
+<symbol id="i-rupee" viewBox="0 0 24 24"><path d="M7 5h10M7 9h10M7 5c5 0 7 2 7 4s-2 4-7 4l6 7"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-2-3-5-3-5-1s3 1 5 1zM12 7c2-3 5-3 5-1s-3 1-5 1z"/></symbol>
+<symbol id="i-job" viewBox="0 0 24 24"><path d="M3 8h18v12H3zM9 8V5h6v3M3 13h18"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3A4 4 0 0011 18.7l1-1"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 018 0v4"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><path d="M8 15a4 4 0 110-8 4 4 0 010 8zM11 11h10M18 11v4M21 11v3"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0120 0M5 12.5a10 10 0 0114 0M8.5 16a5 5 0 017 0M12 19.5h.01"/></symbol>
+<symbol id="i-app" viewBox="0 0 24 24"><path d="M7 2h10v20H7zM10.5 18.5h3"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M9 11a4 4 0 100-8 4 4 0 000 8zM2 21a7 7 0 0114 0M17 4a4 4 0 010 7M19 15a7 7 0 013 6"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><path d="M18 8a3 3 0 100-6 3 3 0 000 6zM6 15a3 3 0 100-6 3 3 0 000 6zM18 22a3 3 0 100-6 3 3 0 000 6zM8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2zM12 10v5M12 18h.01"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.2l-5.5 3 1-6.2L3 9.6l6.2-.9z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l5 5 9-10"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-5-5"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+<symbol id="i-next" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 01-10 0zM7 6H4v2a3 3 0 003 3M17 6h3v2a3 3 0 01-3 3M12 14v4M8 21h8"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2zM4 19V5"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><path d="M9 9h11v11H9zM5 15V4h11"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+<symbol id="i-redo" viewBox="0 0 24 24"><path d="M20 12a8 8 0 10-3 6.2M20 5v5h-5"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z"/></symbol>
+<symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0012 3z"/></symbol>
+</defs>
+</svg>
+
+<header class="top" id="top">
+  <div class="top-row">
+    <div class="brand"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg><span id="brandName"></span></div>
+    <div class="lang" role="group" aria-label="Language / भाषा">
+      <button type="button" data-a="lang" data-v="hi" id="lhi">हिन्दी</button>
+      <button type="button" data-a="lang" data-v="en" id="len">English</button>
+    </div>
+  </div>
+  <div class="toran" aria-hidden="true"></div>
+  <div class="road" id="road" hidden></div>
+</header>
+
+<main id="stage" tabindex="-1"></main>
+
+<nav class="bar" id="bar" hidden><div class="bar-in" id="barIn"></div></nav>
+
+<script>
+"use strict";
+var $=function(s){return document.querySelector(s)};
+var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+var S={lang:"hi",name:"",village:"",step:0,max:0,scam:0,scamSeen:[],dosOpen:-1,dosSeen:[],q:0,score:0,picked:null,quizDone:false,text:"",result:null,checks:[],rating:0,likes:[],comment:"",done:false,err:""};
+var T=function(hi,en){return S.lang==="hi"?hi:en};
+var P=function(p){return S.lang==="hi"?p[0]:p[1]};
+var ic=function(n,c){return '<svg class="ic '+(c||"")+'" aria-hidden="true"><use href="#i-'+n+'"/></svg>'};
+
+try{var _j=JSON.parse(localStorage.getItem("csg")||"{}");if(_j.lang)S.lang=_j.lang;if(_j.name)S.name=_j.name;if(_j.village)S.village=_j.village}catch(e){}
+function save(){try{localStorage.setItem("csg",JSON.stringify({lang:S.lang,name:S.name,village:S.village}))}catch(e){}}
+
+var STEPS=[
+ {k:"login",n:["लॉगिन","Login"]},
+ {k:"welcome",n:["स्वागत","Welcome"]},
+ {k:"scams",n:["ठगी पहचानें","Spot scams"]},
+ {k:"check",n:["संदेश जाँचें","Check SMS"]},
+ {k:"dos",n:["क्या करें, क्या न करें","Do and Don't"]},
+ {k:"quiz",n:["क्विज़","Quiz"]},
+ {k:"help",n:["मदद","Help"]},
+ {k:"feedback",n:["आपकी राय","Feedback"]}
+];
+
+/* ---------- illustrations ---------- */
+var SCENE='<svg class="scene" viewBox="0 0 400 230" role="img" aria-label="Village scene: a farmer checking a phone with a shield">'+
+'<rect width="400" height="230" style="fill:var(--sky)"/>'+
+'<circle cx="326" cy="52" r="26" style="fill:var(--sun)"/>'+
+'<g style="stroke:var(--sun);stroke-width:3;stroke-linecap:round"><path d="M326 12v8M326 84v8M286 52h8M358 52h8M298 24l6 6M348 74l6 6M354 24l-6 6M304 74l-6 6"/></g>'+
+'<path d="M0 150c60-40 110-40 170-8 50-30 140-40 230 6v82H0z" style="fill:var(--hill1)"/>'+
+'<path d="M0 175c80-26 150-20 220 0 70 14 130 6 180-8v63H0z" style="fill:var(--hill2)"/>'+
+'<path d="M120 230c20-30 60-40 120-40 50 0 100 10 130 40z" style="fill:var(--road)"/>'+
+/* hut */
+'<rect x="38" y="150" width="96" height="60" style="fill:var(--mud)"/>'+
+'<polygon points="26,154 86,102 146,154" style="fill:var(--thatch)"/>'+
+'<g style="stroke:var(--mud);stroke-width:2;opacity:.6"><path d="M50 150l36-38M70 150l16-18M110 150L86 118M122 150L90 114"/></g>'+
+'<rect x="76" y="168" width="22" height="42" rx="3" style="fill:#4A2E1A"/>'+
+'<rect x="108" y="166" width="16" height="16" rx="2" style="fill:var(--sky)"/>'+
+/* tree */
+'<rect x="190" y="146" width="12" height="62" style="fill:#6B4425"/>'+
+'<circle cx="196" cy="128" r="30" style="fill:#3F8F55"/><circle cx="176" cy="142" r="20" style="fill:#4BA063"/><circle cx="218" cy="140" r="21" style="fill:#4BA063"/>'+
+/* farmer */
+'<ellipse cx="300" cy="212" rx="22" ry="4" style="fill:#000;opacity:.12"/>'+
+'<rect x="289" y="186" width="9" height="26" rx="3" style="fill:#F4F1E4"/><rect x="302" y="186" width="9" height="26" rx="3" style="fill:#F4F1E4"/>'+
+'<rect x="284" y="146" width="32" height="46" rx="10" style="fill:var(--brand)"/>'+
+'<path d="M316 156l14 -8" stroke="#2a1a10" stroke-width="0" /><rect x="312" y="150" width="9" height="22" rx="4" transform="rotate(-35 316 156)" style="fill:var(--brand)"/>'+
+'<rect x="326" y="132" width="13" height="22" rx="3" style="fill:#1B2740"/><rect x="328" y="135" width="9" height="15" rx="1.5" style="fill:#CFE8FF"/>'+
+'<circle cx="300" cy="134" r="11" style="fill:var(--skin)"/>'+
+'<path d="M288 130c0-11 7-16 12-16s12 5 12 16c-7-4-17-4-24 0z" style="fill:var(--sun)"/>'+
+'<path d="M290 127c7-3 14-3 20 0" stroke="#C42B2B" stroke-width="3" fill="none"/>'+
+'<path d="M295 140q5 3 10 0" stroke="#2a1a10" stroke-width="1.5" fill="none"/>'+
+/* shield bubble */
+'<path d="M346 78l22 8v16c0 14-9 22-22 26-13-4-22-12-22-26V86z" style="fill:var(--leaf)"/>'+
+'<path d="M336 104l7 7 13-15" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'+
+/* birds */
+'<g stroke="#1B2740" stroke-width="2" fill="none" opacity=".55" stroke-linecap="round"><path d="M180 50q6-6 12 0q6-6 12 0M222 74q5-5 10 0q5-5 10 0"/></g>'+
+'</svg>';
+
+var FACE='<svg class="face" viewBox="0 0 80 80" role="img" aria-label="Suraksha Dada">'+
+'<path d="M8 80c0-19 13-27 32-27s32 8 32 27z" style="fill:var(--brand)"/>'+
+'<circle cx="40" cy="38" r="17" style="fill:var(--skin)"/>'+
+'<path d="M20 34c0-15 9-22 20-22s20 7 20 22c-8-5-32-5-40 0z" style="fill:var(--sun)"/>'+
+'<path d="M22 30c11-4 25-4 36 0" stroke="#C42B2B" stroke-width="3" fill="none"/>'+
+'<circle cx="34" cy="40" r="1.9" fill="#2a1a10"/><circle cx="46" cy="40" r="1.9" fill="#2a1a10"/>'+
+'<path d="M29 47c4-3 8-2 11 0 3-2 7-3 11 0-3 6-8 4-11 2-3 2-8 4-11-2z" fill="#2a1a10"/>'+
+'</svg>';
+
+function guide(txt){
+  var can=("speechSynthesis" in window);
+  return '<div class="guide">'+FACE+'<div class="bubble"><div class="who">'+T("सुरक्षा दादा","Suraksha Dada")+'</div><div id="gtxt">'+txt+'</div>'+
+  (can?'<button type="button" class="btn small ghost" data-a="speak" style="align-self:flex-start">'+ic("sound","sm")+T("सुनिए","Listen")+'</button>':"")+'</div></div>';
+}
+
+/* ---------- data ---------- */
+var SCAMS=[
+ {ic:"phone",c:"c2",t:["KYC वाला फ़ोन","KYC call"],ch:["फ़ोन कॉल","Phone call"],
+  say:["“मैं बैंक से बोल रहा हूँ। आपका KYC अधूरा है, खाता आज रात बंद हो जाएगा। अभी OTP बताइए।”","“I am calling from the bank. Your KYC is incomplete and your account will be blocked tonight. Tell me the OTP now.”"],
+  flags:[["खाता बंद होने का डर दिखाया","He scares you with a blocked account"],["“आज रात”, “अभी” कहकर जल्दी मचाई","He rushes you with “tonight” and “now”"],["OTP माँगा, जो बैंक कभी नहीं माँगता","He asks for the OTP, which a bank never does"]],
+  dos:[["फ़ोन तुरंत काट दें।","Hang up the call at once."],["OTP और PIN किसी को न बताएँ।","Never tell anyone your OTP or PIN."],["KYC करवाना हो तो खुद अपनी बैंक शाखा जाएँ।","If KYC is really due, visit your own bank branch."]]},
+ {ic:"rupee",c:"c1",t:["UPI से गलती से पैसे","UPI sent by mistake"],ch:["UPI / WhatsApp","UPI / WhatsApp"],
+  say:["“भाई, गलती से आपके खाते में ₹5,000 आ गए हैं। कृपया वापस भेज दीजिए, मैं मुसीबत में हूँ।”","“Brother, I sent ₹5,000 to your account by mistake. Please send it back, I am in trouble.”"],
+  flags:[["अनजान आदमी, भावुक कहानी","A stranger with an emotional story"],["पैसे लौटाने का दबाव","Pressure to return money fast"],["अक्सर “पैसे माँगने की रिक्वेस्ट” भेजकर आपसे PIN डलवाते हैं","Often sends a “collect request” to make you type your PIN"]],
+  dos:[["पैसे उस आदमी को वापस न भेजें।","Do not send the money back to that person."],["अपने बैंक या शाखा को बताएँ, वे सही तरीक़ा बताएँगे।","Tell your bank or branch. They will guide you."],["पैसे पाने के लिए कभी PIN नहीं डालना पड़ता।","You never type a PIN to receive money."]]},
+ {ic:"gift",c:"c4",t:["लॉटरी या इनाम","Lottery or prize"],ch:["SMS / WhatsApp","SMS / WhatsApp"],
+  say:["“बधाई हो! आपने ₹25 लाख की लॉटरी जीती है। इनाम पाने के लिए ₹2,000 प्रोसेसिंग फ़ीस अभी भेजें।”","“Congratulations! You won a ₹25 lakh lottery. Pay ₹2,000 processing fee now to get your prize.”"],
+  flags:[["आपने कोई लॉटरी ली ही नहीं","You never bought any lottery ticket"],["इनाम से पहले फ़ीस माँगी","They ask for a fee before the prize"],["लालच दिखाकर जल्दी करवाई","They tempt you and hurry you"]],
+  dos:[["जवाब न दें, पैसे न भेजें।","Do not reply and do not pay."],["नंबर ब्लॉक करें और रिपोर्ट करें।","Block the number and report it."],["घर में सबको बताएँ ताकि कोई और न फँसे।","Tell the family so nobody else falls for it."]]},
+ {ic:"job",c:"c5",t:["नकली नौकरी","Fake job offer"],ch:["WhatsApp / Telegram","WhatsApp / Telegram"],
+  say:["“घर बैठे काम, रोज़ ₹3,000 कमाइए! सिर्फ़ ₹500 रजिस्ट्रेशन फ़ीस अभी भेजें।”","“Work from home, earn ₹3,000 a day! Just pay ₹500 registration fee now.”"],
+  flags:[["बिना मेहनत बहुत कमाई का वादा","Big earnings promised for little work"],["नौकरी से पहले पैसे माँगे","Money asked before the job starts"],["कंपनी का पता या दफ़्तर नहीं बताया","No company address or office shown"]],
+  dos:[["असली कंपनी नौकरी के लिए पैसे नहीं माँगती।","A real company never charges you for a job."],["कंपनी की वेबसाइट और पता खुद जाँचें।","Check the company website and address yourself."],["किसी बड़े या जानकार से पूछकर आगे बढ़ें।","Ask an elder or a knowledgeable person first."]]},
+ {ic:"link",c:"c3",t:["बैंक का नकली लिंक","Fake bank link"],ch:["WhatsApp संदेश","WhatsApp message"],
+  say:["“आपका खाता बंद होने वाला है। अभी यहाँ क्लिक करके अपडेट करें: bit.ly/bank-kyc-update। या PM-Kisan.apk डाउनलोड करें।”","“Your account is about to close. Click here to update now: bit.ly/bank-kyc-update. Or download PM-Kisan.apk.”"],
+  flags:[["छोटा, अजीब लिंक (bit.ly जैसा)","A short, odd link (like bit.ly)"],[".apk फ़ाइल, यानी नकली ऐप","An .apk file, which is a fake app"],["खाता बंद होने का डर","Fear of the account closing"]],
+  dos:[["लिंक पर क्लिक न करें, .apk इंस्टॉल न करें।","Do not click the link or install the .apk."],["बैंक का ऐप सिर्फ़ Play Store से लें।","Get the bank app only from the Play Store."],["शक हो तो 1930 पर बात करें।","If in doubt, call 1930."]]}
+];
+
+var DOS=[
+ {ic:"key",c:"c1",t:["OTP","OTP"],
+  do:["OTP तभी डालें जब आपने खुद लेन-देन शुरू किया हो।","Enter an OTP only for a transaction you started yourself."],
+  dont:["OTP किसी को न बताएँ, बैंक वाले को भी नहीं।","Never tell an OTP to anyone, not even a “bank officer”."]},
+ {ic:"lock",c:"c2",t:["PIN और पासवर्ड","PIN and password"],
+  do:["PIN याद रखें और कभी-कभी बदलें।","Remember your PIN and change it now and then."],
+  dont:["1234 या जन्म-तारीख़ न रखें, PIN को कार्ड के साथ लिखकर न रखें।","Avoid 1234 or your birth date. Never keep the PIN written with your card."]},
+ {ic:"rupee",c:"c3",t:["UPI","UPI"],
+  do:["पैसे भेजने से पहले नाम ज़रूर देखें।","Check the receiver’s name before you send money."],
+  dont:["अनजान “रिक्वेस्ट” पर PIN न डालें। पैसे पाने के लिए PIN नहीं लगता।","Never enter a PIN on an unknown “request”. Receiving money needs no PIN."]},
+ {ic:"users",c:"c5",t:["सोशल मीडिया","Social media"],
+  do:["प्रोफ़ाइल प्राइवेट रखें, अनजान फ्रेंड रिक्वेस्ट सोचकर मानें।","Keep your profile private and think before accepting strangers."],
+  dont:["आधार, खाता नंबर, घर का पता न डालें। अनजान वीडियो कॉल न उठाएँ। कोई धमकाए तो घर में बताएँ और 1930 पर कॉल करें।","Do not post Aadhaar, account number or home address. Do not answer unknown video calls. If someone threatens you, tell family and call 1930."]},
+ {ic:"wifi",c:"c6",t:["पब्लिक Wi-Fi","Public Wi-Fi"],
+  do:["बैंक और UPI के लिए अपना मोबाइल डेटा इस्तेमाल करें।","Use your own mobile data for banking and UPI."],
+  dont:["स्टेशन, दुकान या मेले के फ्री Wi-Fi पर पासवर्ड या बैंकिंग न करें।","Do not log in or bank on free Wi-Fi at stations, shops or fairs."]},
+ {ic:"app",c:"c4",t:["नकली ऐप","Fake apps"],
+  do:["ऐप सिर्फ़ Play Store से लें और रेटिंग देखें।","Install apps only from the Play Store and check ratings."],
+  dont:["WhatsApp पर आई .apk फ़ाइल कभी इंस्टॉल न करें। ऐप को बेवजह SMS और संपर्क की अनुमति न दें।","Never install an .apk sent on WhatsApp. Do not give an app SMS or contacts access without reason."]}
+];
+
+var QZ=[
+ {q:["कोई “बैंक अफ़सर” फ़ोन पर OTP माँगे तो क्या करें?","A “bank officer” asks for your OTP on a call. What do you do?"],
+  o:[["OTP बता दूँ, खाता बच जाएगा","Tell the OTP to save my account"],["फ़ोन काट दूँ","Hang up"],["नाम पूछकर फिर बता दूँ","Ask his name, then tell the OTP"]],a:1,
+  e:["बैंक कभी फ़ोन पर OTP नहीं माँगता।","A bank never asks for an OTP on a call."]},
+ {q:["अनजान आदमी कहता है “गलती से ₹5,000 आपके खाते में आ गए, वापस भेजिए।”","A stranger says “I sent ₹5,000 to you by mistake, send it back.”"],
+  o:[["तुरंत वापस भेज दूँ","Send it back at once"],["उसका नंबर सबको भेज दूँ","Forward his number to everyone"],["बैंक को बताऊँ, उसे पैसे न भेजूँ","Tell my bank and do not send him money"]],a:2,
+  e:["सही तरीक़ा बैंक बताएगा। सीधे भेजने पर आप फँस सकते हैं।","The bank will guide you. Sending directly can trap you."]},
+ {q:["WhatsApp पर आया: “₹25 लाख की लॉटरी, ₹2,000 फ़ीस भेजें।”","WhatsApp says: “₹25 lakh lottery, pay ₹2,000 fee.”"],
+  o:[["ब्लॉक करूँ और रिपोर्ट करूँ","Block and report"],["फ़ीस भेज दूँ","Pay the fee"],["दोस्त को भी बताऊँ कि जीत लो","Tell a friend to try too"]],a:0,
+  e:["इनाम के लिए पहले पैसे माँगना ठगी की पहचान है।","Asking for money before a prize is a sure sign of fraud."]},
+ {q:["UPI में PIN कब डालना होता है?","When do you type your UPI PIN?"],
+  o:[["पैसे पाने के लिए","To receive money"],["जब कोई ऐप माँगे","When any app asks"],["सिर्फ़ पैसे भेजते समय","Only when sending money"]],a:2,
+  e:["पैसे पाने के लिए PIN कभी नहीं लगता।","Receiving money never needs a PIN."]},
+ {q:["साइबर ठगी की हेल्पलाइन कौन सी है?","Which is the cyber fraud helpline?"],
+  o:[["100","100"],["1930","1930"],["108","108"]],a:1,
+  e:["साइबर क्राइम हेल्पलाइन 1930 है।","The cyber crime helpline is 1930."]},
+ {q:["रेलवे स्टेशन के फ्री Wi-Fi पर बैंक का काम करना कैसा है?","Is it fine to do banking on free Wi-Fi at a railway station?"],
+  o:[["नहीं, अपना मोबाइल डेटा इस्तेमाल करूँ","No, I use my own mobile data"],["हाँ, ठीक है","Yes, it is fine"],["सिर्फ़ रात में","Only at night"]],a:0,
+  e:["पब्लिक Wi-Fi पर आपकी जानकारी चोरी हो सकती है।","Your details can be stolen on public Wi-Fi."]},
+ {q:["WhatsApp पर “PM-Kisan.apk” फ़ाइल आई। क्या करें?","A file “PM-Kisan.apk” arrives on WhatsApp. What now?"],
+  o:[["इंस्टॉल कर लूँ","Install it"],["पूरे गाँव को भेज दूँ","Forward to the whole village"],["ऐप सिर्फ़ Play Store से लूँ","Get apps only from the Play Store"]],a:2,
+  e:[".apk फ़ाइल से नकली ऐप फ़ोन में घुस सकता है।","An .apk file can put a fake app on your phone."]},
+ {q:["नौकरी देने वाला “रजिस्ट्रेशन फ़ीस ₹500” माँगे तो?","A recruiter asks for ₹500 registration fee. What do you do?"],
+  o:[["भेज दूँ, नौकरी पक्की","Pay, the job is sure"],["यह ठगी का संकेत है, पैसे न दूँ","It is a fraud sign, do not pay"],["कम फ़ीस की माँग करूँ","Bargain for a lower fee"]],a:1,
+  e:["असली कंपनी नौकरी के लिए पैसे नहीं लेती।","A real company never charges for a job."]},
+ {q:["ठगी में पैसे कट गए। सबसे पहले क्या करें?","Money was stolen. What is the very first step?"],
+  o:[["तुरंत 1930 पर कॉल करूँ और बैंक को बताऊँ","Call 1930 at once and tell the bank"],["दो दिन इंतज़ार करूँ","Wait two days"],["ठग को फ़ोन करके समझाऊँ","Call the thief and plead"]],a:0,
+  e:["जितनी जल्दी रिपोर्ट, पैसा रुकने की संभावना उतनी बेहतर।","The sooner you report, the better the chance to stop the money."]},
+ {q:["संदेश आया “बिजली आज रात कटेगी, इस नंबर पर फ़ोन करें।”","A message says “Power will be cut tonight, call this number.”"],
+  o:[["उस नंबर पर फ़ोन करूँ","Call that number"],["लिंक पर क्लिक करूँ","Click the link"],["बिजली दफ़्तर या सरकारी ऐप से खुद जाँचूँ","Check with the electricity office or official app"]],a:2,
+  e:["डर दिखाने वाले संदेश की सच्चाई खुद असली जगह से जाँचें।","Verify a scary message yourself from the real source."]}
+];
+
+var HELP_STEPS=[
+ ["तुरंत 1930 पर कॉल करें और बताएँ कि क्या हुआ।","Call 1930 at once and tell them what happened."],
+ ["अपने बैंक को फ़ोन करके कार्ड, UPI या खाता रुकवाएँ।","Call your bank and freeze the card, UPI or account."],
+ ["cybercrime.gov.in पर शिकायत दर्ज करें।","File a complaint at cybercrime.gov.in."],
+ ["स्क्रीनशॉट, लेन-देन नंबर और ठग का नंबर सँभालकर रखें।","Keep screenshots, the transaction number and the scammer’s number."],
+ ["घर वालों को बताएँ और अपने पासवर्ड बदल लें।","Tell your family and change your passwords."]
+];
+
+var LIKES=[["ठगी की कहानियाँ","Scam stories"],["संदेश जाँच","Message checker"],["क्विज़","Quiz"],["क्या करें, क्या न करें","Do and Don't"],["हिन्दी भाषा","Hindi language"],["सुनने की सुविधा","Listen feature"]];
+
+/* ---------- message checker ---------- */
+var NOTICE=/(do not|don't|never) share|न बताएं|न बताएँ|साझा न करें|किसी को न दें|किसी को न बता/i;
+var OFFICIAL=/(gov\.in|nic\.in|sbi\.co\.in|onlinesbi\.sbi|hdfcbank\.com|icicibank\.com|npci\.org\.in)/i;
+var RULES=[
+ {id:"otp",w:5,hard:true,skipOnNotice:true,re:/\botp\b|ओटीपी|one.?time pass/i,
+  m:["OTP का ज़िक्र है। OTP किसी को बताने या भेजने के लिए नहीं होता।","It talks about an OTP. An OTP is never to be shared or sent."]},
+ {id:"pin",w:4,hard:false,skipOnNotice:true,re:/\bpin\b|पिन|\bcvv\b|password|पासवर्ड/i,
+  m:["PIN, पासवर्ड या CVV का ज़िक्र है।","It mentions a PIN, password or CVV."]},
+ {id:"urg",w:2,re:/urgent|immediately|right now|tonight|within \d+ ?(hour|hrs|min)|last chance|expire|अभी|तुरंत|जल्दी|आज रात|आज ही|फौरन|फ़ौरन|वरना|24 घंटे/i,
+  m:["जल्दबाज़ी मचाई गई है। ठग सोचने का समय नहीं देते।","It rushes you. Scammers do not give you time to think."]},
+ {id:"thr",w:2,re:/(account|खाता|खाते|sim|सिम|बिजली|electricity|card|कार्ड|upi|pan|पैन|aadhaar|आधार|kyc).{0,45}(block|suspend|deactivat|expire|बंद|ब्लॉक|कट जाएगी|कट जाएगा|कटेगी|कटेगा)|(block|suspend|बंद|ब्लॉक).{0,45}(account|खाता|खाते|sim|सिम)/i,
+  m:["खाता या सेवा बंद होने का डर दिखाया गया है।","It scares you with a blocked account or service."]},
+ {id:"kyc",w:2,re:/\bkyc\b|केवाईसी/i,
+  m:["KYC अपडेट के नाम पर संदेश है। असली KYC बैंक शाखा में होता है।","It uses “KYC update” as bait. Real KYC is done at the branch."]},
+ {id:"prz",w:3,re:/lottery|lucky draw|you have won|you won|congratulations|jackpot|लॉटरी|इनाम|ईनाम|जीत|बधाई|कैशबैक|लकी ड्रा/i,
+  m:["इनाम या लॉटरी का लालच है।","It tempts you with a prize or lottery."]},
+ {id:"fee",w:3,re:/(registration|processing|joining|insurance|delivery|customs|claim) ?(fee|charge)|फीस|फ़ीस|शुल्क|चार्ज|advance|security deposit/i,
+  m:["पहले पैसे या फ़ीस माँगी जा रही है।","It asks for money or a fee first."]},
+ {id:"snd",w:2,re:/(send|transfer|pay|refund|return).{0,30}(₹|rs\.?|rupees|money|amount)|(पैसे|रुपये|₹|रकम).{0,30}(भेज|वापस|लौटा|जमा)|गलती से|by mistake/i,
+  m:["पैसे भेजने या लौटाने को कहा गया है।","It asks you to send or return money."]},
+ {id:"short",w:3,re:/(bit\.ly|tinyurl|t\.co|goo\.gl|cutt\.ly|rb\.gy|is\.gd|shorturl|tiny\.cc)\S*/i,
+  m:["छोटा लिंक है। इसके पीछे का असली पता छिपा रहता है।","It has a short link that hides the real address."]},
+ {id:"apk",w:5,hard:true,re:/\.apk\b/i,
+  m:[".apk फ़ाइल है। यह नकली ऐप फ़ोन में डाल सकती है।","It has an .apk file, which can install a fake app."]},
+ {id:"rem",w:5,hard:true,re:/anydesk|teamviewer|quicksupport|rustdesk/i,
+  m:["फ़ोन का कंट्रोल देने वाला ऐप डाउनलोड करने को कहा है।","It asks you to install a remote-control app."]},
+ {id:"job",w:2,re:/work from home|घर बैठे|part.?time job|कमाइए|कमाएं|कमाएँ|earn .{0,20}(daily|per day)/i,
+  m:["आसान कमाई का वादा है।","It promises easy earnings."]},
+ {id:"sec",w:2,re:/don'?t tell|do not tell|किसी को मत बताना|किसी को न बताना|गोपनीय|secret/i,
+  m:["बात छिपाने को कहा गया है।","It asks you to keep it secret."]}
+];
+function analyze(raw){
+  var t=raw.trim(), notice=NOTICE.test(t), score=0, hard=false, bad=[], good=[];
+  RULES.forEach(function(r){
+    if(r.skipOnNotice&&notice)return;
+    if(r.re.test(t)){score+=r.w;if(r.hard)hard=true;bad.push(r.m)}
+  });
+  var links=t.match(/(?:https?:\/\/|www\.)[^\s]+/gi)||[];
+  var odd=links.filter(function(l){return !OFFICIAL.test(l)&&!/(bit\.ly|tinyurl|t\.co|goo\.gl|cutt\.ly|rb\.gy|is\.gd|shorturl|tiny\.cc)/i.test(l)});
+  if(odd.length){score+=2;bad.push(["अनजान वेबसाइट का लिंक है। खोलने से पहले रुकें।","It has an unknown website link. Pause before opening it."])}
+  if(links.length&&!odd.length&&!/(bit\.ly|tinyurl|t\.co|goo\.gl|cutt\.ly|rb\.gy|is\.gd|shorturl|tiny\.cc)/i.test(t)){good.push(["लिंक सरकारी या जाने-पहचाने बैंक का दिखता है, फिर भी वेबसाइट खुद टाइप करके खोलें।","The link looks official, still type the website yourself."])}
+  if(/(call|contact|कॉल|संपर्क).{0,30}\+?\d[\d\s-]{8,}/i.test(t)){score+=1;bad.push(["अनजान नंबर पर फ़ोन करने को कहा है।","It tells you to call an unknown number."])}
+  if(notice){good.push(["संदेश खुद कहता है कि OTP या PIN किसी को न बताएँ। असली बैंक ऐसा लिखते हैं।","The message itself warns you not to share the OTP or PIN. Real banks write this."])}
+  var v=(hard||score>=5)?"danger":(score>=2?"careful":"safe");
+  return {v:v,bad:bad,good:good,score:score};
+}
+var SAMPLES=[
+ ["ठगी वाला संदेश","Scam message","प्रिय ग्राहक, आपका खाता आज रात बंद हो जाएगा। KYC अपडेट के लिए अभी क्लिक करें: bit.ly/bank-kyc-up और OTP भेजें।","Dear customer, your account will be blocked tonight. Click now to update KYC: bit.ly/bank-kyc-up and send the OTP."],
+ ["लॉटरी संदेश","Lottery message","बधाई हो! आपने 25 लाख की लॉटरी जीती है। इनाम पाने के लिए 2000 रुपये प्रोसेसिंग फीस भेजें।","Congratulations! You have won a 25 lakh lottery. Send 2000 rupees processing fee to claim your prize."],
+ ["बैंक का सामान्य संदेश","Normal bank message","Your OTP for UPI transaction is 482913. Do not share it with anyone. Valid for 10 minutes.","Your OTP for UPI transaction is 482913. Do not share it with anyone. Valid for 10 minutes."]
+];
+
+/* ---------- views ---------- */
+var V={};
+
+V.login=function(){
+  return SCENE+
+  '<div class="card">'+
+   '<div><h1>'+T("नमस्ते! अपना नाम बताइए","Namaste! Tell us your name")+'</h1>'+
+   '<p class="fine" style="margin-top:6px">'+T("मोबाइल चलाइए, पर ठगी से बचिए।","Use your phone, stay safe from fraud.")+'</p></div>'+
+   '<form id="loginForm" novalidate autocomplete="off">'+
+    '<div style="margin-bottom:12px"><label for="inName">'+T("आपका नाम","Your name")+'</label><input type="text" id="inName" maxlength="40" value="'+esc(S.name)+'" placeholder="'+T("जैसे: रामलाल","e.g. Ramlal")+'"></div>'+
+    '<div style="margin-bottom:8px"><label for="inVillage">'+T("गाँव का नाम","Village name")+'</label><input type="text" id="inVillage" maxlength="40" value="'+esc(S.village)+'" placeholder="'+T("जैसे: रामपुर","e.g. Rampur")+'"></div>'+
+    '<div class="err" id="loginErr" role="alert">'+esc(S.err)+'</div>'+
+    '<button class="btn primary block" type="submit">'+ic("next")+T("सीखना शुरू करें","Start learning")+'</button>'+
+   '</form>'+
+   '<p class="fine">'+ic("lock","sm")+' '+T("कोई पासवर्ड नहीं चाहिए। आपकी जानकारी सिर्फ़ आपके फ़ोन में रहती है।","No password needed. Your details stay only on your phone.")+'</p>'+
+  '</div>';
+};
+
+V.welcome=function(){
+  var nm=S.name?esc(S.name):T("दोस्त","friend");
+  var tiles=[[2,"search","c2"],[3,"msg","c1"],[4,"book","c3"],[5,"trophy","c4"],[6,"phone","c5"],[7,"star","c6"]];
+  return guide(T("नमस्ते <b>"+nm+"</b> जी! मैं आपको ठगों की चालें दिखाऊँगा। हर पाठ छोटा है, और आख़िर में आपके लिए बैज है।","Namaste <b>"+nm+"</b>! I will show you how scammers trick people. Each lesson is short, and there is a badge at the end."))+
+  '<div class="card warm"><h2>'+T("तीन सुनहरे नियम","Three golden rules")+'</h2>'+
+   '<ul class="dos" style="color:var(--ink)">'+
+    '<li>'+ic("check")+'<span>'+T("<b>OTP और PIN</b> किसी को नहीं बताना।","<b>OTP and PIN</b> go to nobody.")+'</span></li>'+
+    '<li>'+ic("check")+'<span>'+T("पैसे <b>पाने</b> के लिए PIN नहीं डालना।","Never type a PIN to <b>receive</b> money.")+'</span></li>'+
+    '<li>'+ic("check")+'<span>'+T("डर या लालच लगे तो <b>रुकें</b> और घर में पूछें।","If you feel fear or greed, <b>stop</b> and ask at home.")+'</span></li>'+
+   '</ul></div>'+
+  '<div class="card"><h2>'+T("आज आप क्या सीखेंगे","What you will learn today")+'</h2>'+
+   '<div class="tiles">'+STEPS.slice(2).map(function(s,i){var t=tiles[i];return '<button type="button" class="tile" data-a="go" data-v="'+t[0]+'"><span class="disc '+t[2]+'">'+ic(t[1])+'</span>'+P(s.n)+'</button>'}).join("")+'</div></div>';
+};
+
+V.scams=function(){
+  var sc=SCAMS[S.scam];
+  var tabs=SCAMS.map(function(s,i){
+    return '<button type="button" class="tile'+(i===S.scam?" on":"")+'" data-a="scam" data-v="'+i+'" aria-pressed="'+(i===S.scam)+'"><span class="disc '+s.c+'">'+ic(s.ic)+'</span><span>'+P(s.t)+'</span>'+(S.scamSeen.indexOf(i)>-1?'<span class="seen">'+ic("check","sm")+'</span>':"")+'</button>';
+  }).join("");
+  var last=S.scam===SCAMS.length-1;
+  return guide(T("हर ठगी की एक कहानी होती है। नीचे से एक चुनिए और देखिए ठग क्या कहता है।","Every scam has a story. Pick one below and see what the scammer says."))+
+  '<div class="card"><div class="spread"><h2>'+T("ठगी पहचानें","Spot the scam")+'</h2><span class="fine">'+T("देखे: ","Seen: ")+S.scamSeen.length+'/'+SCAMS.length+'</span></div><div class="tiles">'+tabs+'</div></div>'+
+  '<div class="card fade" id="scamCard">'+
+   '<div class="sec-title"><span class="disc '+sc.c+'" style="width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff">'+ic(sc.ic)+'</span>'+P(sc.t)+'</div>'+
+   '<div class="say"><div class="chan">'+ic("alert","sm")+P(sc.ch)+'</div>'+P(sc.say)+'</div>'+
+   '<div class="sec-title head-bad">'+ic("eye")+T("लाल झंडे: ऐसे पहचानें","Red flags: how to tell")+'</div>'+
+   '<ul class="flags">'+sc.flags.map(function(f){return '<li>'+ic("x","sm")+'<span>'+P(f)+'</span></li>'}).join("")+'</ul>'+
+   '<div class="sec-title head-good">'+ic("shield")+T("आप क्या करें","What you should do")+'</div>'+
+   '<ul class="dos">'+sc.dos.map(function(f){return '<li>'+ic("check","sm")+'<span>'+P(f)+'</span></li>'}).join("")+'</ul>'+
+   '<button type="button" class="btn sun block" data-a="scamNext">'+(last?T("पहली ठगी फिर देखें","See the first scam again"):T("अगली ठगी देखें","See next scam"))+ic("next")+'</button>'+
+  '</div>';
+};
+
+V.check=function(){
+  var r=S.result, out="";
+  if(r){
+    if(r.empty){out='<div class="verdict careful fade"><div class="big">'+ic("msg","lg")+T("पहले संदेश चिपकाइए","Paste a message first")+'</div></div>'}
+    else{
+      var lab={danger:[T("ख़तरनाक","Dangerous"),"alert"],careful:[T("सावधान रहें","Be careful"),"eye"],safe:[T("सुरक्षित दिखता है","Looks safe"),"shield"]}[r.v];
+      var act={danger:T("जवाब न दें, लिंक न खोलें, OTP या PIN न बताएँ। नंबर ब्लॉक करें। पैसे कट गए हों तो तुरंत 1930 पर कॉल करें।","Do not reply, do not open links, do not share OTP or PIN. Block the number. If money is gone, call 1930 at once."),
+               careful:T("जल्दी न करें। बैंक या कंपनी के असली नंबर से या शाखा जाकर खुद पक्का करें।","Do not hurry. Confirm through the real bank or company number, or visit the branch."),
+               safe:T("कोई बड़ा लाल झंडा नहीं मिला। यह जाँच सिर्फ़ एक मदद है। शक हो तो किसी बड़े से या बैंक से पूछें।","No big red flag found. This check is only a help. If unsure, ask an elder or your bank.")}[r.v];
+      out='<div class="verdict '+r.v+' fade"><div class="big">'+ic(lab[1],"lg")+lab[0]+'</div>'+
+        (r.bad.length?'<div><div class="sec-title head-bad" style="margin-bottom:6px">'+T("कारण","Reasons")+'</div><ul class="reasons">'+r.bad.map(function(b){return '<li>'+ic("x","sm")+'<span>'+P(b)+'</span></li>'}).join("")+'</ul></div>':"")+
+        (r.good.length?'<div><div class="sec-title head-good" style="margin-bottom:6px">'+T("अच्छे संकेत","Good signs")+'</div><ul class="reasons">'+r.good.map(function(b){return '<li>'+ic("check","sm")+'<span>'+P(b)+'</span></li>'}).join("")+'</ul></div>':"")+
+        '<p><b>'+T("अब क्या करें: ","What now: ")+'</b>'+act+'</p></div>';
+    }
+  }
+  return guide(T("कोई संदेश शक वाला लगे तो यहाँ चिपकाइए। मैं बताऊँगा कि उसमें ठगी के निशान हैं या नहीं।","If a message looks odd, paste it here. I will tell you if it has signs of fraud."))+
+  '<div class="card"><h2>'+T("क्या यह संदेश सुरक्षित है?","Is this message safe?")+'</h2>'+
+   '<div><label for="msgText">'+T("SMS या WhatsApp का संदेश यहाँ चिपकाइए","Paste the SMS or WhatsApp text here")+'</label><textarea id="msgText" placeholder="'+T("यहाँ चिपकाएँ…","Paste here…")+'">'+esc(S.text)+'</textarea></div>'+
+   '<div class="row"><button type="button" class="btn primary" data-a="analyze" style="flex:1">'+ic("search")+T("जाँचें","Check")+'</button><button type="button" class="btn ghost" data-a="clear">'+ic("redo")+T("मिटाएँ","Clear")+'</button></div>'+
+   '<div><div class="fine" style="margin-bottom:6px">'+T("आज़माने के लिए एक नमूना चुनें:","Or try a sample:")+'</div><div class="row">'+SAMPLES.map(function(s,i){return '<button type="button" class="chip" data-a="sample" data-v="'+i+'">'+P([s[0],s[1]])+'</button>'}).join("")+'</div></div>'+
+   '<p class="fine">'+ic("lock","sm")+' '+T("आपका संदेश कहीं नहीं भेजा जाता। जाँच इसी फ़ोन में होती है।","Your message is not sent anywhere. The check runs on this phone.")+'</p>'+
+  '</div><div id="checkOut">'+out+'</div>';
+};
+
+V.dos=function(){
+  return guide(T("हर चीज़ पर एक पट्टी दबाइए और देखिए क्या करना है और क्या नहीं।","Tap each row to see what to do and what to avoid."))+
+  '<div class="card"><div class="spread"><h2>'+T("क्या करें, क्या न करें","Do and Don't")+'</h2><span class="fine">'+T("देखे: ","Seen: ")+S.dosSeen.length+'/'+DOS.length+'</span></div>'+
+  DOS.map(function(d,i){
+    var open=S.dosOpen===i;
+    return '<div class="acc'+(open?" open":"")+'"><button type="button" data-a="dos" data-v="'+i+'" aria-expanded="'+open+'"><span class="disc '+d.c+'">'+ic(d.ic)+'</span>'+P(d.t)+(S.dosSeen.indexOf(i)>-1&&!open?'<span style="color:var(--leaf)">'+ic("check","sm")+'</span>':"")+'<span class="chev">'+ic("chev")+'</span></button>'+
+     (open?'<div class="body fade"><div class="sec-title head-good">'+ic("check")+T("करें","Do")+'</div><ul class="dos"><li>'+ic("check","sm")+'<span>'+P(d.do)+'</span></li></ul><div class="sec-title head-bad">'+ic("x")+T("न करें","Don't")+'</div><ul class="flags"><li>'+ic("x","sm")+'<span>'+P(d.dont)+'</span></li></ul></div>':"")+'</div>';
+  }).join("")+'</div>';
+};
+
+function medalSvg(color){
+  return '<svg viewBox="0 0 120 140" role="img" aria-label="Badge"><path d="M36 0h18l14 44H46zM84 0H66L52 44h22z" style="fill:var(--brand)"/><circle cx="60" cy="86" r="42" style="fill:'+color+'"/><circle cx="60" cy="86" r="32" fill="none" stroke="#fff" stroke-width="3" opacity=".8"/><path d="M60 62l7 15 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2z" fill="#fff"/></svg>';
+}
+function badge(){
+  if(S.score>=9)return {n:["साइबर रक्षक","Cyber Rakshak"],c:"#F4A300",m:["शानदार! आप गाँव के साइबर रक्षक हैं।","Excellent! You are the village cyber guardian."]};
+  if(S.score>=6)return {n:["साइबर मित्र","Cyber Mitra"],c:"#9AA6B5",m:["बहुत अच्छे! थोड़ा और सीखिए, आप रक्षक बन सकते हैं।","Well done! Learn a little more and you can be a guardian."]};
+  return {n:["सीखता साथी","Learning Saathi"],c:"#B5702F",m:["अच्छी शुरुआत! पाठ दोबारा देखकर फिर कोशिश करें।","Good start! Revisit the lessons and try again."]};
+}
+V.quiz=function(){
+  if(S.quizDone){
+    var b=badge();
+    return guide(P(b.m))+
+    '<div class="card medal fade"><h2>'+T("आपका नतीजा","Your result")+'</h2><div class="score">'+S.score+' / '+QZ.length+'</div>'+medalSvg(b.c)+'<h3>'+P(b.n)+'</h3>'+
+     '<button type="button" class="btn ghost" data-a="quizRetry">'+ic("redo")+T("फिर से खेलें","Play again")+'</button></div>';
+  }
+  var q=QZ[S.q], ans=S.picked!==null;
+  return guide(T("10 सवाल हैं। एक-एक करके जवाब दीजिए। गलत हो तो भी घबराइए नहीं, मैं समझा दूँगा।","There are 10 questions. Answer one by one. If you get one wrong, I will explain."))+
+  '<div class="card"><div class="spread"><b>'+T("सवाल ","Question ")+(S.q+1)+' / '+QZ.length+'</b><span class="fine">'+T("अंक: ","Score: ")+S.score+'</span></div>'+
+   '<div class="bar-q" aria-hidden="true"><i style="width:'+(S.q/QZ.length*100)+'%"></i></div>'+
+   '<h3>'+P(q.q)+'</h3>'+
+   q.o.map(function(o,i){
+     var cls="opt"; if(ans){if(i===q.a)cls+=" right";else if(i===S.picked)cls+=" wrong"}
+     return '<button type="button" class="'+cls+'" data-a="pick" data-v="'+i+'"'+(ans?" disabled":"")+'><span class="k">'+"ABC"[i]+'</span><span>'+P(o)+'</span>'+(ans&&i===q.a?'<span style="margin-left:auto;color:var(--leaf)">'+ic("check")+'</span>':"")+(ans&&i===S.picked&&i!==q.a?'<span style="margin-left:auto;color:var(--alert)">'+ic("x")+'</span>':"")+'</button>';
+   }).join("")+
+   (ans?'<div class="explain fade"><b>'+(S.picked===q.a?T("सही जवाब! ","Correct! "):T("सही जवाब ऊपर हरे में है। ","The right answer is green. "))+'</b>'+P(q.e)+'</div>'+
+     '<button type="button" class="btn sun block" data-a="qnext">'+(S.q===QZ.length-1?T("नतीजा देखें","See result"):T("अगला सवाल","Next question"))+ic("next")+'</button>':"")+
+  '</div>';
+};
+
+function shareUrl(){var u="";try{u=location.href}catch(e){}return /^https?:/.test(u)?u:""}
+function shareBlock(){
+  var u=shareUrl();
+  var txt=T("साइबर सुरक्षा ग्राम: ठगी से बचना सीखिए।","Cyber Suraksha Gram: learn to stay safe from fraud.")+(u?" "+u:"");
+  return '<div class="card"><div class="sec-title">'+ic("share")+T("परिवार को भेजें","Share with family")+'</div>'+
+   '<p>'+T("गाँव में जितने ज़्यादा लोग सीखेंगे, उतने कम लोग ठगे जाएँगे।","The more people learn in the village, the fewer get cheated.")+'</p>'+
+   '<div class="row"><a class="btn primary" style="flex:1" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(txt)+'">'+ic("share")+T("WhatsApp पर भेजें","Send on WhatsApp")+'</a>'+
+   '<button type="button" class="btn ghost" data-a="copy" data-v="'+esc(txt)+'">'+ic("copy")+T("कॉपी करें","Copy")+'</button></div>'+
+   '<div class="fine" id="copyNote" aria-live="polite"></div></div>';
+}
+
+V.help=function(){
+  var n=S.checks.length;
+  return guide(T("अगर ठगी हो जाए तो घबराइए मत। जल्दी मदद माँगिए। यह सूची एक-एक करके पूरी कीजिए।","If you are cheated, do not panic. Ask for help quickly. Tick each step as you do it."))+
+  '<div class="call"><div class="sec-title" style="color:#fff">'+ic("alert")+T("साइबर क्राइम हेल्पलाइन","Cyber crime helpline")+'</div>'+
+   '<div class="num" id="num1930">1930</div><p>'+T("ठगी होते ही यहाँ फ़ोन करें। जितनी जल्दी रिपोर्ट करेंगे, पैसा रुकने की संभावना उतनी बेहतर।","Call as soon as it happens. The sooner you report, the better the chance to stop the money.")+'</p>'+
+   '<div class="row"><a class="btn" href="tel:1930">'+ic("phone")+T("1930 पर कॉल","Call 1930")+'</a><button type="button" class="btn small" data-a="copy" data-v="1930">'+ic("copy","sm")+T("नंबर कॉपी","Copy number")+'</button></div></div>'+
+  '<div class="card"><div class="sec-title">'+ic("globe")+T("ऑनलाइन शिकायत","Report online")+'</div>'+
+   '<p>'+T("वेबसाइट: ","Website: ")+'<b>cybercrime.gov.in</b></p>'+
+   '<a class="btn ghost" target="_blank" rel="noopener" href="https://cybercrime.gov.in">'+ic("globe")+T("पोर्टल खोलें","Open the portal")+'</a></div>'+
+  '<div class="card"><div class="spread"><h2>'+T("पैसे कट जाएँ तो ये करें","If money is lost, do this")+'</h2><span class="fine">'+n+'/'+HELP_STEPS.length+'</span></div>'+
+   HELP_STEPS.map(function(s,i){var on=S.checks.indexOf(i)>-1;return '<button type="button" class="step'+(on?" ticked":"")+'" data-a="tick" data-v="'+i+'" aria-pressed="'+on+'"><span class="box">'+ic("check","sm")+'</span><span>'+P(s)+'</span></button>'}).join("")+
+   '<p class="fine">'+T("पास के पुलिस थाने में भी जा सकते हैं। बैंक का हेल्पलाइन नंबर कार्ड के पीछे लिखा होता है।","You can also visit the nearest police station. Your bank’s helpline is printed on the back of your card.")+'</p></div>'+
+  shareBlock();
+};
+
+V.feedback=function(){
+  if(S.done){
+    var b=S.quizDone?badge():null;
+    return guide(T("धन्यवाद <b>"+esc(S.name||"")+"</b> जी! अब आप दूसरों को भी बचा सकते हैं।","Thank you <b>"+esc(S.name||"")+"</b>! Now you can protect others too."))+
+    '<div class="cert fade">'+ic("shield","lg")+'<div class="fine">'+T("साइबर सुरक्षा ग्राम","Cyber Suraksha Gram")+'</div><div class="fine">'+T("यह प्रमाणित करता है कि","This is to certify that")+'</div>'+
+     '<div class="nm">'+esc(S.name||T("साथी","Friend"))+'</div>'+(S.village?'<div>'+T("गाँव: ","Village: ")+esc(S.village)+'</div>':"")+
+     '<div>'+T("ने साइबर सुरक्षा का पाठ पूरा किया","has completed the cyber safety lessons")+'</div>'+
+     (b?'<div style="display:flex;justify-content:center">'+'<div class="medal" style="gap:2px">'+medalSvg(b.c).replace("<svg ","<svg style=\"width:90px\" ")+'<b>'+P(b.n)+' · '+S.score+'/'+QZ.length+'</b></div></div>':'<div class="fine">'+T("क्विज़ अभी बाकी है।","The quiz is still pending.")+'</div>')+'</div>'+
+    '<p class="fine" style="text-align:center">'+T("आपकी राय इसी फ़ोन में सहेजी गई है।","Your feedback is saved on this phone only.")+'</p>'+
+    shareBlock()+
+    '<button type="button" class="btn ghost block" data-a="restart">'+ic("redo")+T("शुरू से दोबारा देखें","Start again from the beginning")+'</button>';
+  }
+  return guide(T("आख़िर में आपकी राय चाहिए, ताकि अगली बार और अच्छा बना सकें।","Last, we would like your opinion so we can make it better."))+
+  '<div class="card"><h2>'+T("आपकी राय","Your feedback")+'</h2>'+
+   '<div><div style="font-weight:600;margin-bottom:6px">'+T("यह पाठ कैसा लगा?","How was this lesson?")+'</div>'+
+    '<div class="stars" role="group" aria-label="'+T("रेटिंग","Rating")+'">'+[1,2,3,4,5].map(function(i){return '<button type="button" class="'+(i<=S.rating?"on":"")+'" data-a="rate" data-v="'+i+'" aria-label="'+i+'">'+ic("star")+'</button>'}).join("")+'</div></div>'+
+   '<div><div style="font-weight:600;margin-bottom:6px">'+T("सबसे ज़्यादा क्या पसंद आया?","What did you like most?")+'</div><div class="row">'+LIKES.map(function(l,i){return '<button type="button" class="chip" data-a="like" data-v="'+i+'" aria-pressed="'+(S.likes.indexOf(i)>-1)+'">'+P(l)+'</button>'}).join("")+'</div></div>'+
+   '<div><label for="fbText">'+T("कुछ और कहना है? (ज़रूरी नहीं)","Anything else? (optional)")+'</label><textarea id="fbText" style="min-height:100px" placeholder="'+T("यहाँ लिखें…","Write here…")+'">'+esc(S.comment)+'</textarea></div>'+
+   '<div class="err" id="fbErr" role="alert"></div>'+
+   '<button type="button" class="btn sun block" data-a="submitFb">'+ic("check")+T("राय भेजें","Submit feedback")+'</button></div>';
+};
+
+/* ---------- render ---------- */
+function render(scrollTop){
+  var k=STEPS[S.step].k;
+  $("#brandName").textContent=T("साइबर सुरक्षा ग्राम","Cyber Suraksha Gram");
+  $("#lhi").setAttribute("aria-pressed",S.lang==="hi");$("#len").setAttribute("aria-pressed",S.lang==="en");
+  document.documentElement.lang=S.lang==="hi"?"hi":"en";
+  var st=$("#stage");
+  st.innerHTML=V[k]();
+  if(scrollTop){st.classList.remove("fade");void st.offsetWidth;st.classList.add("fade");window.scrollTo(0,0);try{st.focus({preventScroll:true})}catch(e){}}
+  /* road */
+  var road=$("#road");
+  if(S.step===0){road.hidden=true}else{
+    road.hidden=false;
+    road.innerHTML='<div class="road-label"><span>'+T("पाठ ","Lesson ")+S.step+' / '+(STEPS.length-1)+'</span><span>'+P(STEPS[S.step].n)+'</span></div><div class="dots">'+
+      STEPS.slice(1).map(function(s,i){var n=i+1;var c=n===S.step?"now":(n<=S.max?"done":"");return '<button type="button" class="dot '+c+'" '+(n<=S.max?'data-a="go" data-v="'+n+'"':"disabled")+' aria-label="'+esc(P(s.n))+'"></button>'}).join("")+'</div>';
+  }
+  /* bottom bar */
+  var bar=$("#bar");
+  if(S.step===0){bar.hidden=true;document.body.style.paddingBottom="32px"}else{
+    bar.hidden=false;document.body.style.paddingBottom="120px";
+    var last=S.step===STEPS.length-1;
+    var nxt=STEPS[S.step+1];
+    $("#barIn").innerHTML='<button type="button" class="btn ghost" data-a="back">'+ic("back")+T("पीछे","Back")+'</button>'+
+      (last?"":'<button type="button" class="btn primary next" data-a="next"><span>'+T("आगे","Next")+'<small>'+P(nxt.n)+'</small></span>'+ic("next")+'</button>');
+  }
+}
+function go(n){S.step=Math.max(0,Math.min(STEPS.length-1,n));if(S.step>S.max)S.max=S.step;if(STEPS[S.step].k==="scams"&&S.scamSeen.indexOf(S.scam)<0)S.scamSeen.push(S.scam);render(true)}
+function keepScroll(fn){var y=window.scrollY;fn();window.scrollTo(0,y)}
+function grabText(){var t=$("#msgText");if(t)S.text=t.value;var f=$("#fbText");if(f)S.comment=f.value}
+
+/* ---------- events ---------- */
+document.addEventListener("click",function(e){
+  var b=e.target.closest("[data-a]");if(!b)return;
+  var a=b.dataset.a,v=b.dataset.v;
+  if(a==="lang"){grabText();S.lang=v;save();keepScroll(function(){render(false)});return}
+  if(a==="go"){grabText();go(+v);return}
+  if(a==="next"){grabText();go(S.step+1);return}
+  if(a==="back"){grabText();go(S.step-1);return}
+  if(a==="scam"){S.scam=+v;if(S.scamSeen.indexOf(S.scam)<0)S.scamSeen.push(S.scam);keepScroll(function(){render(false)});$("#scamCard").scrollIntoView({behavior:"smooth",block:"start"});return}
+  if(a==="scamNext"){S.scam=(S.scam+1)%SCAMS.length;if(S.scamSeen.indexOf(S.scam)<0)S.scamSeen.push(S.scam);render(false);$("#stage").scrollIntoView({behavior:"smooth",block:"start"});return}
+  if(a==="analyze"){grabText();S.result=S.text.trim()?analyze(S.text):{empty:true};keepScroll(function(){render(false)});var o=$("#checkOut");if(o)o.scrollIntoView({behavior:"smooth",block:"center"});return}
+  if(a==="clear"){S.text="";S.result=null;keepScroll(function(){render(false)});return}
+  if(a==="sample"){S.text=P([SAMPLES[+v][2],SAMPLES[+v][3]]);S.result=analyze(S.text);keepScroll(function(){render(false)});var o2=$("#checkOut");if(o2)o2.scrollIntoView({behavior:"smooth",block:"center"});return}
+  if(a==="dos"){var i=+v;S.dosOpen=S.dosOpen===i?-1:i;if(S.dosSeen.indexOf(i)<0)S.dosSeen.push(i);keepScroll(function(){render(false)});return}
+  if(a==="pick"){if(S.picked!==null)return;S.picked=+v;if(+v===QZ[S.q].a)S.score++;keepScroll(function(){render(false)});return}
+  if(a==="qnext"){S.picked=null;if(S.q===QZ.length-1){S.quizDone=true}else{S.q++}render(true);return}
+  if(a==="quizRetry"){S.q=0;S.score=0;S.picked=null;S.quizDone=false;render(true);return}
+  if(a==="tick"){var j=+v,x=S.checks.indexOf(j);if(x>-1)S.checks.splice(x,1);else S.checks.push(j);keepScroll(function(){render(false)});return}
+  if(a==="rate"){grabText();S.rating=+v;keepScroll(function(){render(false)});return}
+  if(a==="like"){grabText();var l=+v,y=S.likes.indexOf(l);if(y>-1)S.likes.splice(y,1);else S.likes.push(l);keepScroll(function(){render(false)});return}
+  if(a==="submitFb"){grabText();
+    if(!S.rating){var er=$("#fbErr");if(er)er.textContent=T("कृपया तारे दबाकर रेटिंग दीजिए।","Please tap the stars to give a rating.");return}
+    try{localStorage.setItem("csg-feedback",JSON.stringify({rating:S.rating,likes:S.likes,comment:S.comment,at:Date.now()}))}catch(err){}
+    S.done=true;render(true);return}
+  if(a==="restart"){S.step=1;S.q=0;S.score=0;S.picked=null;S.quizDone=false;S.scam=0;S.scamSeen=[];S.dosOpen=-1;S.dosSeen=[];S.checks=[];S.result=null;S.text="";S.rating=0;S.likes=[];S.comment="";S.done=false;S.max=1;render(true);return}
+  if(a==="copy"){
+    var txt=b.dataset.v,note=$("#copyNote");
+    var ok=function(){if(note)note.textContent=T("कॉपी हो गया।","Copied.");b.blur()};
+    var bad=function(){if(note)note.textContent=T("कॉपी नहीं हो सका। टेक्स्ट को दबाकर खुद कॉपी करें।","Could not copy. Press and hold the text to copy it.")};
+    try{navigator.clipboard.writeText(txt).then(ok,bad)}catch(err){bad()}
+    return}
+  if(a==="speak"){var g=$("#gtxt");if(!g)return;try{var u=new SpeechSynthesisUtterance(g.textContent);u.lang=S.lang==="hi"?"hi-IN":"en-IN";speechSynthesis.cancel();speechSynthesis.speak(u)}catch(err){}return}
+});
+document.addEventListener("submit",function(e){
+  if(e.target.id!=="loginForm")return;
+  e.preventDefault();
+  var n=$("#inName").value.trim(),v=$("#inVillage").value.trim();
+  if(!n){S.err=T("कृपया अपना नाम लिखिए","Please enter your name");$("#loginErr").textContent=S.err;$("#inName").focus();return}
+  S.err="";S.name=n;S.village=v;save();go(1);
+});
+
+render(true);
+</script>
+
+</body></html>
